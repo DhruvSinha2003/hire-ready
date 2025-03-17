@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import {
   ArrowRight,
   CheckCircle,
@@ -68,17 +69,19 @@ export default function LandingPage() {
             </Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Link
-              href="/sign-in"
-              className="text-sm font-medium hover:text-[#0077B5] transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link href="/sign-up">
+            <SignInButton mode="modal">
+              <Button
+                variant="ghost"
+                className="text-sm font-medium hover:text-[#0077B5] transition-colors"
+              >
+                Sign In
+              </Button>
+            </SignInButton>
+            <SignUpButton mode="modal">
               <Button className="bg-[#0077B5] hover:bg-[#005885] text-white">
                 Get Started
               </Button>
-            </Link>
+            </SignUpButton>
           </div>
         </div>
       </header>
@@ -96,11 +99,11 @@ export default function LandingPage() {
                   question sets based on job descriptions and your resume.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/sign-up">
+                  <SignUpButton mode="modal">
                     <Button className="bg-[#0077B5] hover:bg-[#005885] text-white">
-                      Get Started Free
+                      Get Started
                     </Button>
-                  </Link>
+                  </SignUpButton>
                   <Link href="#how-it-works">
                     <Button
                       variant="outline"
@@ -241,11 +244,11 @@ export default function LandingPage() {
                   with HireReady.
                 </p>
               </div>
-              <Link href="/sign-up">
+              <SignUpButton mode="modal">
                 <Button className="bg-white text-[#0077B5] hover:bg-gray-100">
                   Get Started Free <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-              </Link>
+              </SignUpButton>
             </div>
           </div>
         </section>
