@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, useAuth } from "@clerk/nextjs";
 import {
   ArrowRight,
   CheckCircle,
@@ -10,11 +10,19 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function LandingPage() {
+  const { isSignedIn, isLoaded } = useAuth();
+  const router = useRouter();
   useEffect(() => {
-    // Smooth scrolling functionality
+    // Redirect to home if user is already signed in
+    if (isLoaded && isSignedIn) {
+      router.push("/home");
+    }
+  }, [isLoaded, isSignedIn, router]);
+  useEffect(() => {
     const handleAnchorClick = () => {
       const links = document.querySelectorAll('a[href^="#"]');
 
@@ -45,6 +53,8 @@ export default function LandingPage() {
       });
     };
   }, []);
+
+  if (!isLoaded) return null;
 
   return (
     <div className="flex flex-col min-h-screen">
