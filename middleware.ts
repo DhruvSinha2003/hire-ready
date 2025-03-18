@@ -4,7 +4,6 @@ import { NextResponse } from 'next/server'
 export default clerkMiddleware(async (auth, req) => {
   const { userId } = await auth()
   
-  // If user is logged in and on the home page, redirect them to dashboard
   if (userId && req.nextUrl.pathname === '/') {
     return NextResponse.redirect(new URL('/home', req.url))
   }

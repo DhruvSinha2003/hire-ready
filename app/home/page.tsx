@@ -1,20 +1,35 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { UserButton } from "@clerk/nextjs"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "@/components/ui/textarea"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { CheckSquare, FileText, Video, Upload, List, Clock, BarChart, Settings, Plus, Search } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import { UserButton } from "@clerk/nextjs";
+import {
+  BarChart,
+  CheckSquare,
+  Clock,
+  FileText,
+  List,
+  Plus,
+  Search,
+  Upload,
+  Video,
+} from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState("dashboard")
-  const [jobDescription, setJobDescription] = useState("")
-  const [isUploading, setIsUploading] = useState(false)
+  const [jobDescription, setJobDescription] = useState("");
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -25,32 +40,6 @@ export default function HomePage() {
             <span className="text-xl font-bold">HireReady</span>
           </Link>
           <div className="flex items-center gap-4">
-            <nav className="hidden md:flex gap-6">
-              <Link
-                href="/home"
-                className={`text-sm font-medium ${activeTab === "dashboard" ? "text-[#0077B5]" : "text-gray-500 hover:text-[#0077B5]"} transition-colors`}
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/home?tab=interviews"
-                className={`text-sm font-medium ${activeTab === "interviews" ? "text-[#0077B5]" : "text-gray-500 hover:text-[#0077B5]"} transition-colors`}
-              >
-                Interviews
-              </Link>
-              <Link
-                href="/home?tab=recordings"
-                className={`text-sm font-medium ${activeTab === "recordings" ? "text-[#0077B5]" : "text-gray-500 hover:text-[#0077B5]"} transition-colors`}
-              >
-                Recordings
-              </Link>
-              <Link
-                href="/home?tab=analytics"
-                className={`text-sm font-medium ${activeTab === "analytics" ? "text-[#0077B5]" : "text-gray-500 hover:text-[#0077B5]"} transition-colors`}
-              >
-                Analytics
-              </Link>
-            </nav>
             <div className="flex items-center gap-4">
               <UserButton
                 appearance={{
@@ -66,32 +55,15 @@ export default function HomePage() {
       </header>
       <main className="flex-1 bg-gray-50">
         <div className="container py-6 md:py-8 px-4 md:px-6">
-          <Tabs defaultValue="dashboard" className="space-y-6" onValueChange={setActiveTab}>
-            <div className="flex items-center justify-between">
-              <TabsList className="grid w-full max-w-md grid-cols-4">
-                <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-                <TabsTrigger value="interviews">Interviews</TabsTrigger>
-                <TabsTrigger value="recordings">Recordings</TabsTrigger>
-                <TabsTrigger value="analytics">Analytics</TabsTrigger>
-              </TabsList>
-              <div className="hidden md:flex items-center gap-2">
-                <Button variant="outline" size="sm" className="text-[#0077B5]">
-                  <Settings className="mr-2 h-4 w-4" />
-                  Settings
-                </Button>
-                <Button className="bg-[#0077B5] hover:bg-[#005885]">
-                  <Plus className="mr-2 h-4 w-4" />
-                  New Interview
-                </Button>
-              </div>
-            </div>
-
+          <Tabs defaultValue="dashboard" className="space-y-6">
             <TabsContent value="dashboard" className="space-y-6">
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle>Quick Start</CardTitle>
-                    <CardDescription>Create a new interview preparation session</CardDescription>
+                    <CardDescription>
+                      Create a new interview preparation session
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="pb-2">
                     <div className="space-y-4">
@@ -115,25 +87,38 @@ export default function HomePage() {
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
                               <Upload className="w-8 h-8 mb-2 text-gray-500" />
                               <p className="mb-2 text-sm text-gray-500">
-                                <span className="font-semibold">Click to upload</span> or drag and drop
+                                <span className="font-semibold">
+                                  Click to upload
+                                </span>{" "}
+                                or drag and drop
                               </p>
-                              <p className="text-xs text-gray-500">PDF, DOCX (MAX. 5MB)</p>
+                              <p className="text-xs text-gray-500">
+                                PDF, DOCX (MAX. 5MB)
+                              </p>
                             </div>
-                            <Input id="resume-upload" type="file" className="hidden" />
+                            <Input
+                              id="resume-upload"
+                              type="file"
+                              className="hidden"
+                            />
                           </label>
                         </div>
                       </div>
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full bg-[#0077B5] hover:bg-[#005885]">Generate Interview Questions</Button>
+                    <Button className="w-full bg-[#0077B5] hover:bg-[#005885]">
+                      Generate Interview Questions
+                    </Button>
                   </CardFooter>
                 </Card>
 
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle>Recent Activity</CardTitle>
-                    <CardDescription>Your recent interview preparations</CardDescription>
+                    <CardDescription>
+                      Your recent interview preparations
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="pb-2">
                     <div className="space-y-4">
@@ -142,8 +127,12 @@ export default function HomePage() {
                           <FileText className="h-4 w-4 text-[#0077B5]" />
                         </div>
                         <div className="space-y-1">
-                          <p className="text-sm font-medium">Frontend Developer Interview</p>
-                          <p className="text-xs text-gray-500">Completed 2 days ago</p>
+                          <p className="text-sm font-medium">
+                            Frontend Developer Interview
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Completed 2 days ago
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
@@ -151,8 +140,12 @@ export default function HomePage() {
                           <Video className="h-4 w-4 text-[#0077B5]" />
                         </div>
                         <div className="space-y-1">
-                          <p className="text-sm font-medium">Behavioral Questions Practice</p>
-                          <p className="text-xs text-gray-500">Recorded 5 days ago</p>
+                          <p className="text-sm font-medium">
+                            Behavioral Questions Practice
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Recorded 5 days ago
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
@@ -160,8 +153,12 @@ export default function HomePage() {
                           <List className="h-4 w-4 text-[#0077B5]" />
                         </div>
                         <div className="space-y-1">
-                          <p className="text-sm font-medium">Technical Interview Prep</p>
-                          <p className="text-xs text-gray-500">Created 1 week ago</p>
+                          <p className="text-sm font-medium">
+                            Technical Interview Prep
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Created 1 week ago
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -176,7 +173,9 @@ export default function HomePage() {
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle>Your Stats</CardTitle>
-                    <CardDescription>Interview preparation progress</CardDescription>
+                    <CardDescription>
+                      Interview preparation progress
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="pb-2">
                     <div className="space-y-4">
@@ -211,53 +210,6 @@ export default function HomePage() {
                   </CardFooter>
                 </Card>
               </div>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Recommended Practice</CardTitle>
-                  <CardDescription>Based on your recent activity and job interests</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <div className="rounded-lg border p-4">
-                      <div className="flex items-center gap-4">
-                        <div className="rounded-full bg-[#E6F7FF] p-3">
-                          <FileText className="h-5 w-5 text-[#0077B5]" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium">Technical Interview</h3>
-                          <p className="text-sm text-gray-500">15 questions</p>
-                        </div>
-                      </div>
-                      <Button className="mt-4 w-full bg-[#0077B5] hover:bg-[#005885]">Start Practice</Button>
-                    </div>
-                    <div className="rounded-lg border p-4">
-                      <div className="flex items-center gap-4">
-                        <div className="rounded-full bg-[#E6F7FF] p-3">
-                          <Video className="h-5 w-5 text-[#0077B5]" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium">Behavioral Questions</h3>
-                          <p className="text-sm text-gray-500">10 questions</p>
-                        </div>
-                      </div>
-                      <Button className="mt-4 w-full bg-[#0077B5] hover:bg-[#005885]">Start Practice</Button>
-                    </div>
-                    <div className="rounded-lg border p-4">
-                      <div className="flex items-center gap-4">
-                        <div className="rounded-full bg-[#E6F7FF] p-3">
-                          <List className="h-5 w-5 text-[#0077B5]" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium">Resume Deep Dive</h3>
-                          <p className="text-sm text-gray-500">8 questions</p>
-                        </div>
-                      </div>
-                      <Button className="mt-4 w-full bg-[#0077B5] hover:bg-[#005885]">Start Practice</Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </TabsContent>
 
             <TabsContent value="interviews" className="space-y-6">
@@ -284,12 +236,16 @@ export default function HomePage() {
                   <Card key={item}>
                     <CardHeader>
                       <CardTitle>Frontend Developer Interview</CardTitle>
-                      <CardDescription>Created on March 15, 2025</CardDescription>
+                      <CardDescription>
+                        Created on March 15, 2025
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">Questions</span>
+                          <span className="text-sm text-gray-500">
+                            Questions
+                          </span>
                           <span className="font-medium">15</span>
                         </div>
                         <div className="flex items-center justify-between">
@@ -337,7 +293,9 @@ export default function HomePage() {
                   <Card key={item}>
                     <CardHeader>
                       <CardTitle>Tell me about yourself</CardTitle>
-                      <CardDescription>Recorded on March 17, 2025</CardDescription>
+                      <CardDescription>
+                        Recorded on March 17, 2025
+                      </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="aspect-video bg-gray-100 rounded-md flex items-center justify-center">
@@ -345,11 +303,15 @@ export default function HomePage() {
                       </div>
                       <div className="mt-4 space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">Duration</span>
+                          <span className="text-sm text-gray-500">
+                            Duration
+                          </span>
                           <span className="font-medium">2:45</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">Question Type</span>
+                          <span className="text-sm text-gray-500">
+                            Question Type
+                          </span>
                           <span className="font-medium">Behavioral</span>
                         </div>
                       </div>
@@ -375,38 +337,54 @@ export default function HomePage() {
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                 <Card>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-gray-500">Total Practice Time</CardTitle>
+                    <CardTitle className="text-sm font-medium text-gray-500">
+                      Total Practice Time
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">8.5 hours</div>
-                    <p className="text-xs text-green-500">+12% from last month</p>
+                    <p className="text-xs text-green-500">
+                      +12% from last month
+                    </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-gray-500">Completed Interviews</CardTitle>
+                    <CardTitle className="text-sm font-medium text-gray-500">
+                      Completed Interviews
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">24</div>
-                    <p className="text-xs text-green-500">+8% from last month</p>
+                    <p className="text-xs text-green-500">
+                      +8% from last month
+                    </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-gray-500">Recordings</CardTitle>
+                    <CardTitle className="text-sm font-medium text-gray-500">
+                      Recordings
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">18</div>
-                    <p className="text-xs text-green-500">+15% from last month</p>
+                    <p className="text-xs text-green-500">
+                      +15% from last month
+                    </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-gray-500">Question Sets</CardTitle>
+                    <CardTitle className="text-sm font-medium text-gray-500">
+                      Question Sets
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">12</div>
-                    <p className="text-xs text-green-500">+5% from last month</p>
+                    <p className="text-xs text-green-500">
+                      +5% from last month
+                    </p>
                   </CardContent>
                 </Card>
               </div>
@@ -414,11 +392,15 @@ export default function HomePage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Practice Distribution</CardTitle>
-                  <CardDescription>Breakdown of your interview practice by type</CardDescription>
+                  <CardDescription>
+                    Breakdown of your interview practice by type
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="h-[300px] w-full bg-gray-100 rounded-md flex items-center justify-center">
-                    <p className="text-gray-500">Chart visualization would go here</p>
+                    <p className="text-gray-500">
+                      Chart visualization would go here
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -427,6 +409,5 @@ export default function HomePage() {
         </div>
       </main>
     </div>
-  )
+  );
 }
-
